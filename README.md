@@ -26,7 +26,7 @@ The dataset contains a total of 5,004 images and 32,795 question-answer pairs, w
 
 ## 3. Model Architecture
 The model architecture is a variant of the ViLT (Vision and Language Transformer) model adapted for question answering tasks.
-A. ViltEmbeddings:
+### A. ViltEmbeddings:
 1. text_embeddings:
 This submodule deals with embedding textual inputs. It consists of:
 1.
@@ -45,7 +45,7 @@ This submodule deals with embedding image patches. It consists of:
 projection: Convolutional layer for projecting image patches into the same embedding dimension as text embeddings.
 2.
 token_type_embeddings: Embedding layer for token type information.
-B. ViltEncoder:
+### B. ViltEncoder:
 This module consists of a stack of ViltLayers. Each ViltLayer includes:
 1. ViltAttention: Multi-head self-attention mechanism.
 1.
@@ -72,7 +72,7 @@ dense: Linear layer for output transformation.
 dropout: Dropout layer for regularization.
 4. layernorm_before, layernorm_after:
 Layer normalization before and after each sublayer.
-C. ViltPooler:
+### C. ViltPooler:
 Pooling layer for generating a fixed-size representation of the sequence.
 1.
 dense: Linear layer for output transformation.
@@ -93,24 +93,15 @@ This architecture is designed to process both textual inputs (such as questions)
 A Pretrained weights of VILT were applied to it which had been pretrained on the VQAv2 dataset the has 265,016 images different images from datasets like COCO and At least 3 questions (5.4 questions on average) per image with 10 ground truth answers per question
 The model’s last layer of classification was replaced with a custom layer of size 4101 neuron which represents the number of possible answers in the dataset.
 The Model was trained on 3 epochs on the training data, Adam with a learning rate of 5e-5 was used as the optimizer for the model, finally binary cross entropy is applied by the transformer as it is a multiclassification model, The model achieved 32% accuracy on testing set while it had a validation of 4.76 and training loss of 4.84.
-Fig 2: shows the accuracy of the model on the training set
-Fig 3: shows the losses of the model on the training and validation for all the three epochs.
-Fig 4: Graph of losses on the training and validation for all the three epochs.
-4. Model Inference:
-Fig 6: Inference on sample data from the test set.
-Fig 7: Inference on a sample data from the test set.
+
 ## 5. Web Application:
 The web application’s frontend is built on top of React ( a framework of JavaScript ) paired with backend in Flask, Python.
-Website:
-Fig 8:Website Page.
 The interface is simple with a file upload and question input fields. Upon the upload of the file, the API request is sent to the backend, which runs inference function and returns the predicted output. The image and the predicted answers is then output on the screen.
-Fig 9: Prediction Result.
-Fig 10: API Request.
-Fig 11: API Response.
+
 ## 6. Conclusion and Improvements
 The Model failed to achieve the accuracies we were hoping to achieve as such it isn’t recommend trying this model for the dataset, The accuracy achieved was not at all satisfactory, moreover a GPT2 model was tried which failed to have any improvements on the accuracy but rather and had even worse performance on the dataset.
 In the future we can look to improve the model by doing the following things:
-1.
+### 1.
 Increasing the size of our dataset
-2.
+### 2.
 Training a model that has already been pretrained on a more similar dataset.
